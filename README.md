@@ -35,18 +35,89 @@ Python 4.0 이상인 경우 해당 문제는 발생하지 않는다.
 * 참조사이트: [강의노트 04. 파이썬 pickle 모듈](https://wayhome25.github.io/cs/2017/04/04/cs-04/)
 
 ## chapter2
-### compare string contain
-[Does Python have a string 'contains' substring method? - Stack overflow](https://stackoverflow.com/questions/3437059/does-python-have-a-string-contains-substring-method)
+### import modules
+* compare string contain: [Does Python have a string 'contains' substring method? - Stack overflow](https://stackoverflow.com/questions/3437059/does-python-have-a-string-contains-substring-method)
+* urlparse: [파이썬으로 URL 가지고 놀기 - urllib.parse 편](https://velog.io/@city7310/%ED%8C%8C%EC%9D%B4%EC%8D%AC%EC%9C%BC%EB%A1%9C-URL-%EA%B0%80%EC%A7%80%EA%B3%A0-%EB%86%80%EA%B8%B0)
+* BeautifulSoup: [[Python] BeautifulSoup Library 사용법 및 예제](https://codetravel.tistory.com/22)
+* urllib: [urllib.request : urlretrieve, urlopen, urlerror, urlparser](https://velog.io/@shchoice/urllib.request-urlretrieve-urlopen)
+* httplib2: [python으로 REST API 호출](https://glshlee.tistory.com/94)
+* requests: [Python requests 모듈 간단 정리](https://dgkim5360.tistory.com/entry/python-requests)
 
-### urlparse
-netloc - [파이썬으로 URL 가지고 놀기 - urllib.parse 편](https://velog.io/@city7310/%ED%8C%8C%EC%9D%B4%EC%8D%AC%EC%9C%BC%EB%A1%9C-URL-%EA%B0%80%EC%A7%80%EA%B3%A0-%EB%86%80%EA%B8%B0)
+### change module
+httplib2 -> requests
+```
+status, response = httplib2.Http().request(url) ---> response = requests.get(url)
+status.get('content-type')                      ---> response.headers['Content-Type']
+```
 
-### BeautifulSoup
-[[Python] BeautifulSoup Library 사용법 및 예제](https://codetravel.tistory.com/22)
+## chapter3: Building Factories to Create Objects
+Factory Method Pattern: Creator(Factory)가 Product 를 method 를 통해서 만들어내는 패턴   
+참고사이트: [[Design pattern] Factory method pattern (팩토리 메소드 패턴)](https://eomtttttt-develop.tistory.com/86?category=851834)   
+위 사이트에서는 Creator 가 `PizzaStore`이고 Creator 는 추상화 클래스로 제공하며 해당 추상화 Creator 클래스를 상속받은 클래스(ChicagoPizzaStore, NYPizzaStore)
+를 통해서 Product(Pizza)를 만들어낸다. - 해당 사이트의 구현은 프로젝트 디렉터리 아래 addition 디렉터리에 해놨다.
 
-### urllib
-[urllib.request : urlretrieve, urlopen, urlerror, urlparser](https://velog.io/@shchoice/urllib.request-urlretrieve-urlopen)
+### string join / split
+> join example
+> ```python
+str_list = ['hello', 'world']
+joined = ''.join(str_list)
+print(joined)
+# 결과
+# helloworld
+joined = '\n'.join(str_list)
+print(joined)
+# 결과
+# hello
+# world
+```
 
-### httplib2
-[python으로 REST API 호출](https://glshlee.tistory.com/94)
+> split example
+> ``` python
+'1,2,3'.split(',', maxsplit=1)
+['1', '2,3']
+```
 
+* [[python] 파이썬 문자열 합치기 나누기 split/join 함수](https://devpouch.tistory.com/77)
+* [실용적인 Python 디자인 패턴 정리](https://velog.io/@jahoy/%EC%8B%A4%EC%9A%A9%EC%A0%81%EC%9D%B8-Python-%EB%94%94%EC%9E%90%EC%9D%B8-%ED%8C%A8%ED%84%B4-%EC%A0%95%EB%A6%AC)
+
+
+### change module
+BeautifulStoneSoup for Parsing XML Document -> BeautifulSoup(content, 'xml')   
+
+urllib2 for connect to FTP server -> ftplib   
+예제)
+```python
+from ftplib import FTP
+
+host = 'ftp.freebsd.org'
+path = '/pub/FreeBSD'
+with FTP(host) as ftp:
+    ftp.login()
+    ftp.cwd(path)
+```
+주의) FTP() 안에는 url이 아닌 path를 제외한 host 주소만 넣어주어야 한다.
+
+
+### Syntax
+is 와 == 차이
+> is는 객체(Object) 비교 / == 는 값(Value) 비교
+> [[Python] 'is'와 '=='의 차이](https://twpower.github.io/117-difference-between-python-is-and-double-equal)
+
+Abstract Class 선언 변경
+> ```python
+# 기존
+import abc
+class Port:
+    __metaclass__ = abc.ABCMeta
+
+    @abc.abstractmethod
+    def __str__(self):
+        pass
+
+# 변경
+from abc import abstractmethod, ABC
+class Port(ABC):
+    @abstractmethod
+    def __str__(self):
+        pass
+```

@@ -34,7 +34,7 @@ def download_images(thread_name: str):
             continue
 
         bs = BeautifulSoup(response.content, 'html.parser')
-        images = BeautifulSoup.findAll(bs, 'img')
+        images = bs.findAll('img')
         for image in images:
             src = urljoin(url, image.get('src'))
             basename = os.path.basename(src)
