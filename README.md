@@ -64,6 +64,7 @@ joined = ''.join(str_list)
 print(joined)
 # 결과
 # helloworld
+
 joined = '\n'.join(str_list)
 print(joined)
 # 결과
