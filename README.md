@@ -58,7 +58,7 @@ Factory Method Pattern: Creator(Factory)가 Product 를 method 를 통해서 만
 
 ### string join / split
 > join example
-> ```python
+```python
 str_list = ['hello', 'world']
 joined = ''.join(str_list)
 print(joined)
@@ -72,7 +72,7 @@ print(joined)
 ```
 
 > split example
-> ``` python
+``` python
 '1,2,3'.split(',', maxsplit=1)
 ['1', '2,3']
 ```
@@ -104,7 +104,7 @@ is 와 == 차이
 > [[Python] 'is'와 '=='의 차이](https://twpower.github.io/117-difference-between-python-is-and-double-equal)
 
 Abstract Class 선언 변경
-> ```python
+```python
 # 기존
 import abc
 class Port:
