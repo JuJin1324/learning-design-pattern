@@ -140,3 +140,8 @@ Facade 패턴 사용 샘플을 위해서 일부러 남겨두었다.
 
 ### pickle 사용시 주의사항
 pickle로 데이터를 저장하거나 불러올때는 파일을 바이트형식으로 읽거나 써야한다. (wb, rb)
+
+## chapter5: Proxy & Observer Patterns
+### Syntax
+* getattr() 함수: [파이썬 getattr()](https://zetawiki.com/wiki/%ED%8C%8C%EC%9D%B4%EC%8D%AC_getattr())
+* 여기서 사용한 self.__class__ 는 인스턴스 메서드에서 클래스 변수에 접근하기 위한 cls 대용.
