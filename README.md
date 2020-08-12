@@ -122,3 +122,21 @@ class Port(ABC):
     def __str__(self):
         pass
 ```
+
+## chapter4: The Facade Design Pattern
+### URL Encoding
+URL에 사용할 수 없는 문자를 사용할 수 있는 문자 집합으로 변환하는 것. 이것도 두 가지가 있는데, 공백을 '%20'으로 변환하는 것과 '+'로 변환하는 것이 다르다.
+```python
+>>> urllib.parse.quote('안녕 python')
+'%EC%95%88%EB%85%95%20python'
+>>>urllib.parse.quote_plus('안녕 python')
+'%EC%95%88%EB%85%95+python'
+```
+
+### requests.get().json() / requests.get(url).text 
+* `requests.get(url).json()`을 통해서 json의 dict 객체를 가져올 수 있다. 사실상 이 기능으로 인해서 Parser 클래스는 필요가 없어졌지만 
+Facade 패턴 사용 샘플을 위해서 일부러 남겨두었다.
+* `requests.get(url).text` 를 통해서 text 형식의 객체를 가져올 수 있다. 이 문장을 통해서 json을 str 로 가져와서 return 하였다.
+
+### pickle 사용시 주의사항
+pickle로 데이터를 저장하거나 불러올때는 파일을 바이트형식으로 읽거나 써야한다. (wb, rb)
