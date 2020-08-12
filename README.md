@@ -127,9 +127,9 @@ class Port(ABC):
 ### URL Encoding
 URL에 사용할 수 없는 문자를 사용할 수 있는 문자 집합으로 변환하는 것. 이것도 두 가지가 있는데, 공백을 '%20'으로 변환하는 것과 '+'로 변환하는 것이 다르다.
 ```python
->>> urllib.parse.quote('안녕 python')
+>> urllib.parse.quote('안녕 python')
 '%EC%95%88%EB%85%95%20python'
->>>urllib.parse.quote_plus('안녕 python')
+>> urllib.parse.quote_plus('안녕 python')
 '%EC%95%88%EB%85%95+python'
 ```
 
